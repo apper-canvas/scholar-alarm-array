@@ -7,6 +7,7 @@ import { AuthContext } from "@/contexts/AuthContext";
 const Sidebar = () => {
   const location = useLocation()
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const authContext = useContext(AuthContext)
 
   const navigation = [
     { name: "Dashboard", href: "/", icon: "LayoutDashboard" },
@@ -61,7 +62,6 @@ const Sidebar = () => {
           </div>
 <button
             onClick={() => {
-              const authContext = useContext(AuthContext)
               if (authContext?.logout) {
                 authContext.logout()
               }
