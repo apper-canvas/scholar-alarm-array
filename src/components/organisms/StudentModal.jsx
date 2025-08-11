@@ -18,15 +18,15 @@ const StudentModal = ({ isOpen, onClose, onSave, student = null }) => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  useEffect(() => {
+useEffect(() => {
     if (student) {
       setFormData({
-        firstName: student.firstName || "",
-        lastName: student.lastName || "",
-        email: student.email || "",
-        grade: student.grade || "",
-        dateOfBirth: student.dateOfBirth ? student.dateOfBirth.split("T")[0] : "",
-        status: student.status || "Active"
+        firstName: student.first_name_c || "",
+        lastName: student.last_name_c || "",
+        email: student.email_c || "",
+        grade: student.grade_c || "",
+        dateOfBirth: student.date_of_birth_c ? student.date_of_birth_c.split("T")[0] : "",
+        status: student.status_c || "Active"
       })
     } else {
       setFormData({
@@ -85,11 +85,16 @@ const StudentModal = ({ isOpen, onClose, onSave, student = null }) => {
 
     setIsSubmitting(true)
     
-    try {
+try {
       const studentData = {
-        ...formData,
-        dateOfBirth: new Date(formData.dateOfBirth).toISOString(),
-        enrollmentDate: student ? student.enrollmentDate : new Date().toISOString()
+        Name: `${formData.firstName} ${formData.lastName}`,
+        first_name_c: formData.firstName,
+        last_name_c: formData.lastName,
+        email_c: formData.email,
+        grade_c: formData.grade,
+        date_of_birth_c: formData.dateOfBirth,
+        status_c: formData.status,
+        enrollment_date_c: student ? student.enrollment_date_c : new Date().toISOString().split('T')[0]
       }
       
       await onSave(studentData)

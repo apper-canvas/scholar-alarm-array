@@ -309,7 +309,7 @@ const ClassDetail = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {enrolledStudents.map((student, index) => {
+{enrolledStudents.map((student, index) => {
                     const studentGrades = getStudentGrades(student.Id)
                     const studentAverage = studentGrades.length > 0 ?
                       studentGrades.reduce((sum, grade) => sum + (grade.score / grade.maxScore * 100), 0) / studentGrades.length : 0
@@ -326,13 +326,13 @@ const ClassDetail = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium text-sm">
-                              {student.firstName[0]}{student.lastName[0]}
+                              {student.first_name_c?.[0] || 'N'}{student.last_name_c?.[0] || 'A'}
                             </div>
                             <div className="ml-4">
                               <div className="text-sm font-medium text-gray-900">
-                                {student.firstName} {student.lastName}
+                                {student.first_name_c} {student.last_name_c}
                               </div>
-                              <div className="text-sm text-gray-500">{student.grade}</div>
+                              <div className="text-sm text-gray-500">{student.grade_c}</div>
                             </div>
                           </div>
                         </td>

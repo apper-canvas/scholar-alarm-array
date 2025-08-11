@@ -63,14 +63,14 @@ const Grades = () => {
     loadData()
   }, [])
 
-  useEffect(() => {
+useEffect(() => {
     let filtered = grades
 
     if (searchTerm) {
       filtered = filtered.filter(grade => {
         const student = students.find(s => s.Id === grade.studentId)
         const classInfo = classes.find(c => c.Id === grade.classId)
-        const studentName = student ? `${student.firstName} ${student.lastName}` : ""
+        const studentName = student ? `${student.first_name_c} ${student.last_name_c}` : ""
         const className = classInfo ? classInfo.name : ""
         
         return (
@@ -205,7 +205,8 @@ const Grades = () => {
             >
               <option value="">All Students</option>
               {students.map(student => (
-                <option key={student.Id} value={student.Id}>
+<option key={student.Id} value={student.Id}>
+                  {student.first_name_c} {student.last_name_c}
                   {student.firstName} {student.lastName}
                 </option>
               ))}
@@ -374,7 +375,7 @@ const Grades = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredGrades.map((grade, index) => {
-                    const student = students.find(s => s.Id === grade.studentId)
+const student = students.find(s => s.Id === grade.studentId)
                     const classInfo = classes.find(c => c.Id === grade.classId)
                     
                     return (
@@ -395,10 +396,10 @@ const Grades = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900">
-                            {student ? `${student.firstName} ${student.lastName}` : "Unknown Student"}
+                            {student ? `${student.first_name_c} ${student.last_name_c}` : "Unknown Student"}
                           </div>
                           {student && (
-                            <div className="text-sm text-gray-500">{student.grade}</div>
+                            <div className="text-sm text-gray-500">{student.grade_c}</div>
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

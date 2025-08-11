@@ -135,18 +135,18 @@ const StudentDetail = () => {
               <div className="flex items-start justify-between">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 font-display">
-                    {student.firstName} {student.lastName}
+{student.first_name_c} {student.last_name_c}
                   </h2>
-                  <p className="text-gray-600 text-lg">{student.email}</p>
+                  <p className="text-gray-600 text-lg">{student.email_c}</p>
                   <div className="flex items-center space-x-4 mt-3 text-sm text-gray-500">
-                    <span>Grade: {student.grade}</span>
+                    <span>Grade: {student.grade_c}</span>
                     <span>•</span>
-                    <span>Enrolled: {formatDate(student.enrollmentDate)}</span>
+                    <span>Enrolled: {formatDate(student.enrollment_date_c)}</span>
                     <span>•</span>
                     <span className={`font-medium ${
-                      student.status === "Active" ? "text-success" : "text-error"
+                      student.status_c === "Active" ? "text-success" : "text-error"
                     }`}>
-                      {student.status}
+                      {student.status_c}
                     </span>
                   </div>
                 </div>

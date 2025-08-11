@@ -75,7 +75,7 @@ const Dashboard = () => {
   }
 
   // Calculate statistics
-  const activeStudents = students.filter(s => s.status === "Active").length
+const activeStudents = students.filter(s => s.status_c === "Active").length
   const totalClasses = classes.length
   const averageGrade = grades.length > 0 ? 
     grades.reduce((sum, grade) => sum + (grade.score / grade.maxScore * 100), 0) / grades.length : 0
@@ -204,7 +204,7 @@ const Dashboard = () => {
                   </button>
                 </div>
                 <div className="space-y-3">
-                  {recentStudents.map((student, index) => (
+{recentStudents.map((student, index) => (
                     <motion.div
                       key={student.Id}
                       initial={{ opacity: 0, x: -10 }}
@@ -214,14 +214,14 @@ const Dashboard = () => {
                       onClick={() => navigate(`/students/${student.Id}`)}
                     >
                       <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-medium">
-                        {student.firstName[0]}{student.lastName[0]}
+                        {student.first_name_c?.[0] || 'N'}{student.last_name_c?.[0] || 'A'}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
-                          {student.firstName} {student.lastName}
+                          {student.first_name_c} {student.last_name_c}
                         </p>
                         <p className="text-xs text-gray-500">
-                          {student.grade} • {formatDate(student.enrollmentDate)}
+                          {student.grade_c} • {formatDate(student.enrollment_date_c)}
                         </p>
                       </div>
                       <ApperIcon name="ChevronRight" size={14} className="text-gray-400" />
@@ -249,7 +249,7 @@ const Dashboard = () => {
                   </button>
                 </div>
                 <div className="space-y-3">
-                  {recentGrades.map((grade, index) => {
+{recentGrades.map((grade, index) => {
                     const student = students.find(s => s.Id === grade.studentId)
                     const percentage = (grade.score / grade.maxScore) * 100
                     const letterGrade = calculateLetterGrade(percentage)
@@ -267,7 +267,7 @@ const Dashboard = () => {
                             {grade.assignmentName}
                           </p>
                           <p className="text-xs text-gray-500">
-                            {student ? `${student.firstName} ${student.lastName}` : "Unknown Student"}
+                            {student ? `${student.first_name_c} ${student.last_name_c}` : "Unknown Student"}
                           </p>
                         </div>
                         <div className="flex items-center space-x-2">

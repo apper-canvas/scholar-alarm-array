@@ -1,7 +1,8 @@
-import React, { useState } from "react"
-import { NavLink, useLocation } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
-import ApperIcon from "@/components/ApperIcon"
+import React, { useState, useContext } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import ApperIcon from "@/components/ApperIcon";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const Sidebar = () => {
   const location = useLocation()
@@ -51,11 +52,25 @@ const Sidebar = () => {
         </div>
       </nav>
 
-      {/* Footer */}
+{/* Footer */}
       <div className="px-6 py-4 border-t border-gray-100">
-        <div className="flex items-center text-sm text-gray-500">
-          <ApperIcon name="Sparkles" size={16} className="mr-2" />
-          <span>Scholar Hub v1.0</span>
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <div className="flex items-center">
+            <ApperIcon name="Sparkles" size={16} className="mr-2" />
+            <span>Scholar Hub v1.0</span>
+          </div>
+<button
+            onClick={() => {
+              const authContext = useContext(AuthContext)
+              if (authContext?.logout) {
+                authContext.logout()
+              }
+            }}
+            className="flex items-center text-gray-500 hover:text-red-600 transition-colors duration-150"
+            title="Logout"
+          >
+            <ApperIcon name="LogOut" size={16} />
+          </button>
         </div>
       </div>
     </div>
